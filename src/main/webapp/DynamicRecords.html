@@ -1,0 +1,235 @@
+<!-- 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insert Student Records</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .student-record {
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            padding: 10px;
+            border-radius: 5px;
+            position: relative;
+        }
+        button {
+            margin-top: 10px;
+        }
+        .remove-btn {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background-color: #f44336;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 3px;
+        }
+        .remove-btn:hover {
+            background-color: #d32f2f;
+        }
+    </style>
+    <script>
+        // Function to add a new student record dynamically
+        function addStudent() {
+           const container = document.getElementById("student-container");
+            const studentCount = container.children.length + 1; // Get current count of students
+
+            const studentDiv = document.createElement("div");
+            studentDiv.className = "student-record";
+            studentDiv.innerHTML = `
+                <button type="button" class="remove-btn" onclick="removeStudent(this)">Remove</button>
+                <h3>Student ${studentCount}:</h3>
+                BNO: <input type="text" name="bno"><br>
+                RNO: <input type="text" name="rno"><br>                
+                Name: <input type="text" name="name"><br>
+                Branch: <input type="text" name="branch"><br>
+            `;
+
+            container.appendChild(studentDiv);
+        }
+
+        // Function to remove a student record
+        function removeStudent(button) {
+            const studentDiv = button.parentElement;
+            studentDiv.remove(); // Remove the selected student record
+            updateStudentNumbers(); // Recalculate and update student numbers
+        }
+
+        // Function to update student numbers after removal
+        function updateStudentNumbers() {
+            const container = document.getElementById("student-container");
+            const students = container.children; // Get all student records
+
+            for (let i = 0; i < students.length; i++) {
+                const studentNumber = i + 1; // Calculate the new student number
+                const heading = students[i].querySelector("h3"); // Find the heading (Student X:)
+                heading.textContent = `Student ${studentNumber}:`;
+            }
+        }
+    </script>
+</head>
+<body>
+    <h2>Insert Student Records</h2>
+    <form action="./InsertStudentServlet" method="post">
+        <div id="student-container">
+            <div class="student-record">
+               <button type="button" class="remove-btn" onclick="removeStudent(this)">Remove</button>
+                <h3>Student 1:</h3>
+                BNO: <input type="number" name="bno"><br>
+                RNO: <input type="text" name="rno"><br>
+                Name: <input type="text" name="name"><br>
+                Branch: <input type="text" name="branch"><br>
+            </div>
+            
+            
+        </div>
+        <button type="button" onclick="addStudent()">Add new Student</button>
+        <button type="submit">Insert Records to DB</button>
+    </form>
+</body>
+</html>
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insert Student Records</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .student-record {
+            margin-bottom: 20px;
+            border: 1px solid #dd0;
+            padding: 10px;
+            border-radius: 5px;
+            position: relative;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table th, table td {
+            text-align: left;
+            padding: 8px;
+        }
+        table th {
+            background-color: #f2f2f2;
+        }
+        .remove-btn {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background-color: #f44336;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 3px;
+        }
+        .remove-btn:hover {
+            background-color: #d32f2f;
+        }
+    </style>
+    <script>
+        // Function to add a new student record dynamically
+        function addStudent() {
+            const container = document.getElementById("student-container");
+            const studentCount = container.children.length + 1; // Get current count of students
+
+            const studentDiv = document.createElement("div");
+            studentDiv.className = "student-record";
+            studentDiv.innerHTML = `
+                <button type="button" class="remove-btn" onclick="removeStudent(this)">Remove</button>
+                <table>
+                    <thead>
+                        <tr>
+                            <th colspan="2">Student ${studentCount}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>RNO:</td>
+                            <td><input type="text" name="rno"></td>
+                        </tr>
+                        <tr>
+                            <td>Name:</td>
+                            <td><input type="text" name="name"></td>
+                        </tr>
+                        <tr>
+                            <td>Branch:</td>
+                            <td><input type="text" name="branch"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            `;
+
+            container.appendChild(studentDiv);
+        }
+
+        // Function to remove a student record
+        function removeStudent(button) {
+            const studentDiv = button.parentElement;
+            studentDiv.remove(); // Remove the selected student record
+            updateStudentNumbers(); // Recalculate and update student numbers
+        }
+
+        // Function to update student numbers after removal
+        function updateStudentNumbers() {
+            const container = document.getElementById("student-container");
+            const students = container.children; // Get all student records
+
+            for (let i = 0; i < students.length; i++) {
+                const studentNumber = i + 1; // Calculate the new student number
+                const heading = students[i].querySelector("th"); // Find the table header
+                heading.textContent = `Student ${studentNumber}`;
+            }
+        }
+    </script>
+</head>
+<body>
+    <h2>Insert Student Records</h2>
+    <form action="InsertStudentServlet" method="post">
+        <div id="student-container">
+            <div id='child_id' class="student-record">
+                <button type="button" class="remove-btn" onclick="removeStudent(this)">Remove</button>
+                <table>
+                    <thead>
+                        <tr>
+                            <th colspan="2">Student 1</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>RNO:</td>
+                            <td><input type="text" name="rno"></td>
+                        </tr>
+                        <tr>
+                            <td>Name:</td>
+                            <td><input type="text" name="name"></td>
+                        </tr>
+                        <tr>
+                            <td>Branch:</td>
+                            <td><input type="text" name="branch"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+        </div>
+        <button type="button" onclick="addStudent()">Add Student</button>
+        <button type="submit">Insert Records</button>
+    </form>
+</body>
+</html>
+

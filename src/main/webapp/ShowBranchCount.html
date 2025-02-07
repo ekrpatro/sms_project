@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Branch-wise Student Count</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        table {
+            width: 50%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        table th, table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        table th {
+            background-color: #f4f4f4;
+        }
+    </style>
+</head>
+<body>
+    <h2>Branch-wise Student Count</h2>
+    <form action="ShowBranchCountServlet" method="get">
+        <button type="submit">Show Branch-wise Count</button>
+    </form>
+    <hr>
+    <h2>Student Info</h2>
+    <form action="ShowStudentServlet" method="get">
+        <button type="submit">Student Details</button>
+    </form>
+    <h2>Delete Student record</h2>
+    <form action="DeleteStudentServlet" method="post">
+    <label> Enter Roll Number</label>
+    <input type = "text"  name = "Rollno" id = "Rollno">
+        <button type="submit">Delete Student Details</button>
+    </form>
+</body>
+</html>
